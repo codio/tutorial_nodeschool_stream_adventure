@@ -3,10 +3,10 @@
 
   // Run button configuration
   "commands": { 
-    "Install Learnyounode" : "npm install -g learnyounode",    
+    "Install Stream Adventure" : "npm install -g stream-adventure",    
     "Run Lesson" : "./ns-executes.sh run {{filename_no_ext}} {{path}}",
     "Verify Lesson" : "./ns-executes.sh verify {{filename_no_ext}} {{path}}",
-    "Completed Lessons" : "learnyounode",
+    "Completed Lessons" : "stream-adventure",
     "Run with Node" : "node {{filepath}} 3 4 5"
   }
 }
