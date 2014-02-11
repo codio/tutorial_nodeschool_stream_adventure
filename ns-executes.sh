@@ -11,28 +11,27 @@ if [ $2 == "beep_boop" ]; then
     STR="BEEP BOOP"
 elif [ $2 == "meet_pipe" ]; then
     STR="MEET PIPE"
-elif [ $2 == "my_first_io" ]; then
-    STR="MY FIRST I/O!"
-elif [ $2 == "my_first_async_io" ]; then
-    STR="MY FIRST ASYNC I/O!"
-elif [ $2 == "filtered_ls" ]; then
-    STR="FILTERED LS"
-elif [ $2 == "make_it_modular" ]; then
-    STR="MAKE IT MODULAR"
+elif [ $2 == "input_output" ]; then
+    STR="INPUT OUTPUT"
+elif [ $2 == "transform" ]; then
+    STR="TRANSFORM"
+elif [ $2 == "lines" ]; then
+    STR="LINES"
+elif [ $2 == "concat" ]; then
+    STR="CONCAT"
+elif [ $2 == "http_server" ]; then
+    STR="HTTP SERVER"
 elif [ $2 == "http_client" ]; then
     STR="HTTP CLIENT"
-elif [ $2 == "http_collect" ]; then
-    STR="HTTP COLLECT"
-elif [ $2 == "juggling_async" ]; then
-    STR="JUGGLING ASYNC"
-elif [ $2 == "time_server" ]; then
-    STR="TIME SERVER"
-elif [ $2 == "http_file_server" ]; then
-    STR="HTTP FILE SERVER"
-elif [ $2 == "http_uppercaserer" ]; then
-    STR="HTTP UPPERCASERER"
-elif [ $2 == "http_json_api_server" ]; then
-    STR="HTTP JSON API SERVER"
+elif [ $2 == "websockets" ]; then
+    STR="WEBSOCKETS"
+elif [ $2 == "html_stream" ]; then
+    STR="HTML STREAM"
+elif [ $2 == "crypt" ]; then
+    STR="CRYPT"
+elif [ $2 == "secretz" ]; then
+    STR="SECRETZ"
+
 else
     echo UNKNOWN: Make sure you have your code file selected before running/verifying
     exit 0
