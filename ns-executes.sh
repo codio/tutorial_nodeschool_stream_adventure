@@ -27,6 +27,12 @@ elif [ $2 == "websockets" ]; then
     STR="WEBSOCKETS"
 elif [ $2 == "html_stream" ]; then
     STR="HTML STREAM"
+elif [ $2 == "duplexer" ]; then
+    STR="DUPLEXER"
+elif [ $2 == "duplexer_redux" ]; then
+    STR="DUPLEXER REDUX"
+elif [ $2 == "combiner" ]; then
+    STR="COMBINER"    
 elif [ $2 == "crypt" ]; then
     STR="CRYPT"
 elif [ $2 == "secretz" ]; then

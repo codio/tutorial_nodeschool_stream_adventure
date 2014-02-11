@@ -259,9 +259,105 @@ With `trumpet` you can create a transform stream from a css selector:
 
 Now `stream` outputs all the inner html content at `'.beep'` and the data you write to `stream` will appear as the new inner html content.
 
+@annotation:tour duplexer
+#11. Duplexer
+##Challenge
+Write a program that exports a function that spawns a process from a `cmd` string and an `args` array and returns a single duplex stream joining together
+the stdin and stdout of the spawned process:
+
+    var spawn = require('child_process').spawn;
+    
+    module.exports = function (cmd, args) {
+        // spawn the process and return a single stream
+        // joining together the stdin and stdout here
+    };
+
+There is a very handy module you can use here: duplexer. The duplexer module exports a single function `duplexer(writable, readable)` that joins together a
+writable stream and readable stream into a single, readable/writable duplex stream.
+
+If you use duplexer, make sure to `npm install duplexer` in the directory where your solution file is located.
+
+
+
+@annotation:tour duplexer_redux
+#12. Duplexer Redux
+##Challenge
+In this example, you will be given a readable stream, `counter`, as the first argument to your program:
+
+    module.exports = function (counter) {
+        // return a duplex stream to capture countries on the writable side
+        // and pass through `counter` on the readable side
+    };
+
+Return a duplex stream with the `counter` as the readable side. You will be written objects with a 2-character `country` field as input, such as these:
+ 
+    {"short":"OH","name":"Ohio","country":"US"}
+    {"name":"West Lothian","country":"GB","region":"Scotland"}
+    {"short":"NSW","name":"New South Wales","country":"AU"}
+
+Create an object to keep a count of all the countries in the input. Once the input ends, call `counter.setCounts()` with your country counts.
+
+The `duplexer` module will again be very handy in this example.
+
+If you use duplexer, make sure to `npm install duplexer` in the directory where your solution file is located.
+
+
+@annotation:tour combiner
+#13. Combiner
+##Challenge
+Write a module that returns a readable/writable stream using the `stream-combiner` module. You can use this code to start with:
+
+    var combine = require('stream-combiner')
+    
+    module.exports = function () {
+        return combine(
+            // read newline-separated json,
+            // group books into genres,
+            // then gzip the output
+        )
+    }
+ 
+Your stream will be written a newline-separated JSON list of science fiction genres and books. All the books after a `"type":"genre"` row belong in that
+genre until the next `"type":"genre"` comes along in the output.
+
+    {"type":"genre","name":"cyberpunk"}
+    {"type":"book","name":"Neuromancer"}
+    {"type":"book","name":"Snow Crash"}
+    {"type":"genre","name":"space opera"}
+    {"type":"book","name":"A Deepness in the Sky"}
+    {"type":"book","name":"Void"}
+    
+Your program should generate a newline-separated list of JSON lines of genres, each with a `"books"` array containing all the books in that genre. The input
+above would yield the output:
+
+    {"name":"cyberpunk","books":["Neuromancer","Snow Crash"]}
+    {"name":"space opera","books":["A Deepness in the SKy","Void"]}
+
+Your stream should take this list of JSON lines and gzip it with `zlib.createGzip()`.
+
+* HINTS *
+
+The `stream-combiner` module creates a pipeline from a list of streams, returning a single stream that exposes the first stream as the writable side and
+the last stream as the readable side like the `duplexer` module, but with an arbitrary number of streams in between. Unlike the `duplexer` module, each
+stream is piped to the next. For example:
+
+    var combine = require('stream-combiner');
+    var stream = combine(a, b, c, d);
+    
+will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by `combine()` has its writable side hooked into `a` and its readable side hooked
+into `d`.
+
+As in the previous LINES adventure, the `split` module is very handy here. You can put a split stream directly into the stream-combiner pipeline.
+
+If you end up using `split` and `stream-combiner`, make sure to install them into the directory where your solution file resides by doing:
+
+    npm install stream-combiner split
+
+
+
 
 @annotation:tour crypt
-#11. Crypt
+#14. Crypt
 ##Challenge
 Your module will be given a passphrase on `process.argv[2]` and `aes256` encrypted data will be written to stdin.
 
@@ -280,7 +376,7 @@ Instead of calling `.write()` yourself, just pipe stdin into your decrypter.
 
 
 @annotation:tour secretz
-#12. Secretz
+#15. Secretz
 ##Challenge
 An encrypted, gzipped tar file will be piped in on process.stdin. To beat this challenge, for each file in the tar input, print a hex-encoded md5 hash of the file contents followed by a single space followed by the filename, then a newline.
 
