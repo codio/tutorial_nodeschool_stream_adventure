@@ -272,10 +272,10 @@ the stdin and stdout of the spawned process:
         // joining together the stdin and stdout here
     };
 
-There is a very handy module you can use here: duplexer. The duplexer module exports a single function `duplexer(writable, readable)` that joins together a
+There is a very handy module you can use here: duplexer. The [duplexer module](https://www.npmjs.org/package/duplexer) exports a single function `duplexer(writable, readable)` that joins together a
 writable stream and readable stream into a single, readable/writable duplex stream.
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where your solution file is located.
+If you use [`duplexer`](https://www.npmjs.org/package/duplexer), make sure to `npm install duplexer` in the directory where your solution file is located.
 
 
 
@@ -297,7 +297,7 @@ Return a duplex stream with the `counter` as the readable side. You will be writ
 
 Create an object to keep a count of all the countries in the input. Once the input ends, call `counter.setCounts()` with your country counts.
 
-The `duplexer` module will again be very handy in this example.
+The [`duplexer`](https://www.npmjs.org/package/duplexer) module will again be very handy in this example.
 
 If you use duplexer, make sure to `npm install duplexer` in the directory where your solution file is located.
 
@@ -305,7 +305,7 @@ If you use duplexer, make sure to `npm install duplexer` in the directory where 
 @annotation:tour combiner
 #13. Combiner
 ##Challenge
-Write a module that returns a readable/writable stream using the `stream-combiner` module. You can use this code to start with:
+Write a module that returns a readable/writable stream using the [`stream-combiner`](https://www.npmjs.org/package/stream-combiner) module. You can use this code to start with:
 
     var combine = require('stream-combiner')
     
@@ -337,8 +337,8 @@ Your stream should take this list of JSON lines and gzip it with `zlib.createGzi
 
 * HINTS *
 
-The `stream-combiner` module creates a pipeline from a list of streams, returning a single stream that exposes the first stream as the writable side and
-the last stream as the readable side like the `duplexer` module, but with an arbitrary number of streams in between. Unlike the `duplexer` module, each
+The [`stream-combiner`](https://www.npmjs.org/package/stream-combiner) module creates a pipeline from a list of streams, returning a single stream that exposes the first stream as the writable side and
+the last stream as the readable side like the [duplexer module](https://www.npmjs.org/package/duplexer), but with an arbitrary number of streams in between. Unlike the [duplexer module](https://www.npmjs.org/package/duplexer), each
 stream is piped to the next. For example:
 
     var combine = require('stream-combiner');
@@ -347,9 +347,9 @@ stream is piped to the next. For example:
 will internally do `a.pipe(b).pipe(c).pipe(d)` but the `stream` returned by `combine()` has its writable side hooked into `a` and its readable side hooked
 into `d`.
 
-As in the previous LINES adventure, the `split` module is very handy here. You can put a split stream directly into the stream-combiner pipeline.
+As in the previous LINES adventure, the [`split`](https://npmjs.org/package/split) module is very handy here. You can put a split stream directly into the stream-combiner pipeline.
 
-If you end up using `split` and `stream-combiner`, make sure to install them into the directory where your solution file resides by doing:
+If you end up using [`split`](https://npmjs.org/package/split) and [`stream-combiner`](https://www.npmjs.org/package/stream-combiner), make sure to install them into the directory where your solution file resides by doing:
 
     npm install stream-combiner split
 
